@@ -11,7 +11,7 @@ public class Move_zigzag : MonoBehaviour
     [Tooltip("Radiants")]
     public float angle = 0.7853981633974483f;
 
-    public float range;
+    public float range = 1;
 
     public float horizontalSpeed { get; private set; }
     private float xOrigin;

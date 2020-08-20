@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    private Transform trans;
+    [Header("Object references")]
     public Transform chargeJauge;
+    public GameObject bullet;
+    private Transform trans;
 
+    [Header("Tweaks")]
     public float movementSpeed = 3;
     public float chargeSpeed = 1;
+    public float power = 12.5f;
 
     private float charge = 0; // Between 0 and 1
+    private float chargeUI = 0;
     private float minCharge = 0.2f;
 
 
@@ -24,21 +29,22 @@ public class PlayerControl : MonoBehaviour
         // Movement
         trans.position += new Vector3(movementSpeed * Input.GetAxis("Horizontal") * Time.deltaTime, 0);
 
-        // Charge
+        // Load & Fire
         if (Input.GetButton("Fire1"))
         {
             charge = Mathf.Min(charge + chargeSpeed * Time.deltaTime, 1);
-
         }
         else
         {
             if (Input.GetButtonUp("Fire1") && charge >= minCharge)
             {
                 // Fire
-                Debug.Log("Pew!");
+                Instantiate(bullet, GetComponent<Transform>().position, Quaternion.identity).GetComponent<Rigidbody2D>().AddForce(new Vector2(0, charge * power), ForceMode2D.Impulse);
             }
-            charge = Mathf.Max(charge - 3 * Time.deltaTime, 0);
+            charge = 0;
         }
-        chargeJauge.localScale = new Vector3(charge, chargeJauge.localScale.y, chargeJauge.localScale.z);
+        // Have the jauge catch up to the actual charge value
+        chargeUI = Mathf.Clamp(chargeUI - 3 * Time.deltaTime, charge, 1);
+        chargeJauge.localScale = new Vector3(chargeUI, chargeJauge.localScale.y, chargeJauge.localScale.z);
     }
 }

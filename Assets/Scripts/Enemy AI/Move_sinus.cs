@@ -5,7 +5,7 @@ using UnityEngine;
 public class Move_sinus : MonoBehaviour
 {
     [Tooltip("Units / second")]
-    public float speed;
+    public float speed = 1;
 
     [Range(-5f, 5f)]
     [Tooltip("Sinus multiplier")]
