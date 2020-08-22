@@ -133,4 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e55f6fa2abb7a9249b5fb7c2a626922f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flare: {fileID: 7830842558412210762, guid: 2f650e1894ba4724cb5f097dac8a8c80, type: 3}
+  smallFlare: {fileID: 9024831082128958254, guid: b171aee6213ec3c4687d02f1a517f5df,
+    type: 3}
+  bigFlare: {fileID: 7835400116240540000, guid: 4f967420fc8a7234c91c257b897e1876,
+    type: 3}

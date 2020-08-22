@@ -5,7 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour
 {
-    public GameObject flare;
+    public GameObject smallFlare;
+    public GameObject bigFlare;
 
     private Rigidbody2D body;
     private void Start()
@@ -17,14 +18,14 @@ public class Bullet : MonoBehaviour
         //Debug.Log(body.velocity.y);
         if (body.velocity.y <= 0.2f)
         {
-            Detonate();
+            Detonate(smallFlare);
         }
     }
 
-    void Detonate()
+    void Detonate(GameObject flareType)
     {
         Destroy(gameObject);
-        Instantiate(flare, body.position, Quaternion.identity);
+        Instantiate(flareType, body.position, Quaternion.identity);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -32,7 +33,7 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Destroy(collision.gameObject);
-            Detonate();
+            Detonate(bigFlare);
             Debug.Log("Invader destroyed");
         }
     }
