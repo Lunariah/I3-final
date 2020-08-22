@@ -23,16 +23,17 @@ public class Bullet : MonoBehaviour
 
     void Detonate()
     {
-        Instantiate(flare, body.position, Quaternion.identity);
         Destroy(gameObject);
+        Instantiate(flare, body.position, Quaternion.identity);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Detonate();
             Destroy(collision.gameObject);
+            Detonate();
+            Debug.Log("Invader destroyed");
         }
     }
 }

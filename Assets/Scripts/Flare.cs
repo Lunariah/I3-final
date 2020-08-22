@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
 public class Flare : MonoBehaviour
 {
     public float lifetime = 2f;
@@ -18,8 +19,11 @@ public class Flare : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.GetComponent<SpriteRenderer>().color -= alpha;
-        list.Enqueue(collision.GetComponent<SpriteRenderer>());
+        if (collision.CompareTag("Enemy"))
+        {
+            collision.GetComponent<SpriteRenderer>().color += alpha;
+            list.Enqueue(collision.GetComponent<SpriteRenderer>());
+        }
     }
 
     private void Update()
@@ -28,14 +32,13 @@ public class Flare : MonoBehaviour
         {
             lifetime -= Time.deltaTime;
         }
-        else if (!destroyed)
+        else 
         {
             foreach (SpriteRenderer i in list)
             {
-                i.color += alpha;
+                if (i != null) { i.color -= alpha; }
             }
             Destroy(gameObject);
-            destroyed = true;
         }
     }
 }
