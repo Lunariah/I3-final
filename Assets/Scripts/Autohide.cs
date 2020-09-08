@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class Autohide : MonoBehaviour
 {
-    private int childCount;
     private Color alpha;
 
     void Start()
     {   
         alpha = new Color (0,0,0,255);
-        childCount = GetComponent<Transform>().childCount;
-        for (int i = 0; i < childCount; i++)
+
+        foreach (Transform child in transform)
         {
-            GetComponent<Transform>().GetChild(i).GetComponent<SpriteRenderer>().color -= alpha;
+            child.GetComponent<SpriteRenderer>().color -= alpha;
         }
     }
 }

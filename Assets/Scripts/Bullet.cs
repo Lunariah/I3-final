@@ -5,21 +5,15 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour
 {
-    public GameObject smallFlare;
-    public GameObject bigFlare;
+    [SerializeField] private GameObject smallFlare;
+    [SerializeField] private GameObject bigFlare;
+    [SerializeField] private float detonateAtVelocity = 0.2f;
 
     private Rigidbody2D body;
+
     private void Start()
     {
         body = GetComponent<Rigidbody2D>();
-    }
-    void Update()
-    {
-        //Debug.Log(body.velocity.y);
-        if (body.velocity.y <= 0.2f)
-        {
-            Detonate(smallFlare);
-        }
     }
 
     void Detonate(GameObject flareType)
@@ -28,11 +22,19 @@ public class Bullet : MonoBehaviour
         Instantiate(flareType, body.position, Quaternion.identity);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void Update()
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (body.velocity.y <= detonateAtVelocity)
         {
-            Destroy(collision.gameObject);
+            Detonate(smallFlare);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(other.gameObject);
             Detonate(bigFlare);
             Debug.Log("Invader destroyed");
         }

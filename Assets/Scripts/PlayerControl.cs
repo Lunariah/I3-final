@@ -7,27 +7,26 @@ public class PlayerControl : MonoBehaviour
     [Header("Object references")]
     public Transform chargeJauge;
     public GameObject bullet;
-    private Transform trans;
 
     [Header("Tweaks")]
-    public float movementSpeed = 3;
-    public float chargeSpeed = 1;
-    public float power = 12.5f;
+    [SerializeField] private float movementSpeed = 3;
+    [SerializeField] private float chargeSpeed = 1;
+    [SerializeField] private float power = 12.5f;
+    private const float minCharge = 0.2f; // Charge level required to shoot
 
-    private float charge = 0; // Between 0 and 1
+    private float charge = 0;
     private float chargeUI = 0;
-    private float minCharge = 0.2f;
 
 
     private void Start()
     {
-        trans = GetComponent<Transform>();
+        
     }
 
     private void Update()
     {
         // Movement
-        trans.position += new Vector3(movementSpeed * Input.GetAxis("Horizontal") * Time.deltaTime, 0);
+        transform.position += new Vector3(movementSpeed * Input.GetAxis("Horizontal") * Time.deltaTime, 0);
 
         // Load & Fire
         if (Input.GetButton("Fire1"))

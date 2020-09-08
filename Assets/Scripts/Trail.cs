@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// USE LINE RENDERER INSTEAD
+
 public class Trail : MonoBehaviour
 {
     public GameObject sprite;

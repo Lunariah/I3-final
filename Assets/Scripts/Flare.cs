@@ -7,13 +7,10 @@ using UnityEngine.Experimental.Rendering.Universal;
 [RequireComponent(typeof(Light2D))]
 public class Flare : MonoBehaviour
 {
-    [Tooltip("How long the flare will stay on screen")]
-    public float lifetime = 2f;
-    [Tooltip("How long the flare will hang at max size")]
-    public float hangtime = 0.5f;
-    public float outerRadius = 2f;
-    [Range(0f,1f)]
-    public float innerRadius = 0.5f;
+    [SerializeField] private float lifetime = 2f; // Total lifetime
+    [SerializeField] private float hangtime = 0.5f; // Time spent at max intensity
+    [SerializeField] private float outerRadius = 2f;
+    [SerializeField] [Range(0f, 1f)] private float innerRadius = 0.5f;
 
     private Light2D light2D;
     private float speed;
@@ -39,7 +36,7 @@ public class Flare : MonoBehaviour
         {
             // Decrease light radius
             light2D.pointLightOuterRadius -= speed * Time.deltaTime;
-            light2D.pointLightInnerRadius = speed * innerRadius * Time.deltaTime;
+            light2D.pointLightInnerRadius -= speed * innerRadius * Time.deltaTime;
 
             if (elapsed >= lifetime) { Destroy(gameObject); }
         }
