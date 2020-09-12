@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Generator_timer : MonoBehaviour
+public class Generator_timer : Generator
 {
-	public GameObject spawn;
-    public float spawnRate;
+    [SerializeField] private float spawnRate;
 
     private float spawnTimer = 0;
 
@@ -13,7 +12,7 @@ public class Generator_timer : MonoBehaviour
     {
         if (spawnTimer >= spawnRate)
         {
-            Instantiate(spawn, GetComponent<Transform>().position, Quaternion.identity);
+            Spawn();
             spawnTimer = 0;
         }
         else

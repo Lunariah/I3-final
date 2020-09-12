@@ -1,28 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Transactions;
 using UnityEngine;
 
 public class Move_sinus : MonoBehaviour
 {
     [Tooltip("Units / second")]
-    public float speed = 1;
+    [SerializeField] private float speed = 1;
 
-    [Range(-5f, 5f)]
     [Tooltip("Sinus multiplier")]
-    public float mod = 1;
+    [Range(-5f, 5f)]
+    [SerializeField] private float mod = 1;
 
     private Vector3 initialPos;
     private float verticalDistance = 0;
 
     void Start()
     {
-        initialPos = GetComponent<Transform>().position;
+        initialPos = transform.position;
     }
 
 
     void Update()
     {
         verticalDistance += speed * Time.deltaTime;
-        GetComponent<Transform>().position = initialPos + new Vector3(Mathf.Sin(verticalDistance) * mod, -verticalDistance);
+        transform.position = initialPos + new Vector3(Mathf.Sin(verticalDistance) * mod, -verticalDistance);
     }
 }

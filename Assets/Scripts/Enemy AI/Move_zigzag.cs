@@ -4,25 +4,21 @@ using UnityEngine;
 
 public class Move_zigzag : MonoBehaviour
 {
-    [Tooltip("Units / second")]
-    public float speed = 1;
+    [SerializeField] private float speed = 1;
 
-    [Range(-1.5f, 1.5f)]
     [Tooltip("Radiants")]
-    public float angle = 0.7853981633974483f;
+    [Range(-1.5f, 1.5f)]
+    [SerializeField] private float angle = 0.7853981633974483f;
 
-    public float range = 1;
+    [SerializeField] private float range = 1;
 
-    public float horizontalSpeed { get; private set; }
+    private float horizontalSpeed;
     private float xOrigin;
     private float minX, maxX;
-    private Transform trans;
 
     private void Start()
     {
-        trans = GetComponent<Transform>();
-
-        xOrigin = trans.position.x;
+        xOrigin = transform.position.x;
         minX = xOrigin - range;
         maxX = xOrigin + range;
         horizontalSpeed = Mathf.Tan(angle) * speed;
@@ -31,15 +27,15 @@ public class Move_zigzag : MonoBehaviour
     private void Update()
     {
        // if we’re within range radius
-       if (trans.position.x >= minX && trans.position.x <= maxX)
+       if (transform.position.x >= minX && transform.position.x <= maxX)
         {
             // Move
-            trans.position += new Vector3(horizontalSpeed * Time.deltaTime, -speed * Time.deltaTime);
+            transform.position += new Vector3(horizontalSpeed * Time.deltaTime, -speed * Time.deltaTime);
         }
        else
         {
             // Go back to the limit and change direction
-            trans.position = new Vector3(xOrigin + range * Mathf.Sign(horizontalSpeed), trans.position.y);
+            transform.position = new Vector3(xOrigin + range * Mathf.Sign(horizontalSpeed), transform.position.y);
             horizontalSpeed = -horizontalSpeed;
         }
     }

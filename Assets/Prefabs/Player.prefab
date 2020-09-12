@@ -131,6 +131,7 @@ MonoBehaviour:
   bullet: {fileID: 8389025304310240763, guid: a80b71d12f54643468981eea96e47a98, type: 3}
   movementSpeed: 3
   chargeSpeed: 1
+  power: 12.5
 --- !u!1 &4093908859289998592
 GameObject:
   m_ObjectHideFlags: 0

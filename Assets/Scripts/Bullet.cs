@@ -27,6 +27,7 @@ public class Bullet : MonoBehaviour
         if (body.velocity.y <= detonateAtVelocity)
         {
             Detonate(smallFlare);
+            Debug.Log("Whiffed");
         }
     }
 
