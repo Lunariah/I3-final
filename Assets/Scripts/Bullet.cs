@@ -20,9 +20,10 @@ public class Bullet : MonoBehaviour
     {
         Destroy(gameObject);
         Instantiate(flareType, body.position, Quaternion.identity);
+        Debug.Log("Detonated");
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (body.velocity.y <= detonateAtVelocity)
         {
@@ -33,11 +34,17 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log(other.name);
         if (other.gameObject.CompareTag("Enemy"))
         {
             Destroy(other.gameObject);
             Detonate(bigFlare);
             Debug.Log("Invader destroyed");
         }
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log("Destroyed");
     }
 }

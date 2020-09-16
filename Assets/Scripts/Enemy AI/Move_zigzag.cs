@@ -35,7 +35,7 @@ public class Move_zigzag : MonoBehaviour
        else
         {
             // Go back to the limit and change direction
-            transform.position = new Vector3(xOrigin + range * Mathf.Sign(horizontalSpeed), transform.position.y);
+            transform.position = new Vector3(xOrigin + range * Mathf.Sign(horizontalSpeed), transform.position.y, transform.position.z);
             horizontalSpeed = -horizontalSpeed;
         }
     }
