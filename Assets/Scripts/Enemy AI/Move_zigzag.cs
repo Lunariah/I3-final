@@ -15,9 +15,11 @@ public class Move_zigzag : MonoBehaviour
     private float horizontalSpeed;
     private float xOrigin;
     private float minX, maxX;
+    private TrailRenderer trail;
 
     private void Start()
     {
+        trail = GetComponent<TrailRenderer>();
         xOrigin = transform.position.x;
         minX = xOrigin - range;
         maxX = xOrigin + range;
@@ -37,6 +39,8 @@ public class Move_zigzag : MonoBehaviour
             // Go back to the limit and change direction
             transform.position = new Vector3(xOrigin + range * Mathf.Sign(horizontalSpeed), transform.position.y, transform.position.z);
             horizontalSpeed = -horizontalSpeed;
+            // Add rebound point to the trail
+            trail.AddPosition(transform.position);
         }
     }
 }

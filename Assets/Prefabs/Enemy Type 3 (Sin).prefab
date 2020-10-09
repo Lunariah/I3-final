@@ -1,21 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &4903562359287669861
+--- !u!114 &3908002227357446480
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8854672684002129099}
+  m_GameObject: {fileID: 5185877344131125248}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ef5203fc27643c4a9b77c15f93092e0, type: 3}
+  m_Script: {fileID: 11500000, guid: 97892b3892a686447b5c9a4977020e94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
-  angle: 0.7853982
-  range: 1
---- !u!1001 &7165075360342497383
+  speed: 60
+  mod: 60
+--- !u!1001 &6807898923735055532
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -25,7 +24,7 @@ PrefabInstance:
     - target: {fileID: 1841246534055980204, guid: dd6ddd8842900c04fb0fb55ddf9c36af,
         type: 3}
       propertyPath: m_Name
-      value: Enemy Type 2
+      value: Enemy Type 3 (Sin)
       objectReference: {fileID: 0}
     - target: {fileID: 1841246534055980207, guid: dd6ddd8842900c04fb0fb55ddf9c36af,
         type: 3}
@@ -82,11 +81,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8440813597533610300, guid: dd6ddd8842900c04fb0fb55ddf9c36af,
+        type: 3}
+      propertyPath: m_MinVertexDistance
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd6ddd8842900c04fb0fb55ddf9c36af, type: 3}
---- !u!1 &8854672684002129099 stripped
+--- !u!1 &5185877344131125248 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1841246534055980204, guid: dd6ddd8842900c04fb0fb55ddf9c36af,
     type: 3}
-  m_PrefabInstance: {fileID: 7165075360342497383}
+  m_PrefabInstance: {fileID: 6807898923735055532}
   m_PrefabAsset: {fileID: 0}
