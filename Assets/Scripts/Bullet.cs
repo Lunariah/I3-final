@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private GameObject bigFlare;
     [SerializeField] private float detonateAtVelocity = 0.2f;
 
+    public LevelManager level;
     private Rigidbody2D body;
 
     private void Start()

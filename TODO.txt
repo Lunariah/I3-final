@@ -1,0 +1,3 @@
+Bullet.OnTriggerEnter2D -> LevelManager.EnemyDestroyed()
+
+LevelManager: Enemy spawn
