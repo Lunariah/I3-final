@@ -41,7 +41,26 @@ public class Bullet : MonoBehaviour
             Destroy(other.gameObject);
             Detonate(bigFlare);
             Debug.Log("Invader destroyed");
+
+            level.EnemyDestroyed(Identify(other.gameObject));
         }
+    }
+
+    private EnemyType Identify(GameObject other)
+    {
+        if (other.GetComponent<Move_vertical>() != null)
+        {
+            return EnemyType.Straight;
+        }
+        else if (other.GetComponent<Move_zigzag>() != null)
+        {
+            return EnemyType.Zigzag;
+        }
+        else if (other.GetComponent<Move_sinus>() != null)
+        {
+            return EnemyType.Sinus;
+        }
+        else return EnemyType.Boss;
     }
 
     private void OnDestroy()

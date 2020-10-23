@@ -12,22 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6caf4e5a9ecde049a41106a91458d44, type: 3}
   m_Name: Testing
   m_EditorClassIdentifier: 
-  scene: 
+  scene: Testing
   Objective:
-    any: 0
+    any: 3
     anyGenerator: 0
+    straight: 0
     zigzag: 0
     sinus: 0
     staticGenerator: 0
     horizontalGenerator: 0
     straightBomber: 0
-    infinite: 0
   Spawns:
     any: 0
     anyGenerator: 0
+    straight: 0
     zigzag: 0
     sinus: 0
     staticGenerator: 0
     horizontalGenerator: 0
     straightBomber: 0
-    infinite: 0
+  infinite: 0
