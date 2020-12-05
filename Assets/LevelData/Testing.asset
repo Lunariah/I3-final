@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Testing
   m_EditorClassIdentifier: 
   scene: Testing
+  Speed: 0
   Objective:
     any: 3
     anyGenerator: 0

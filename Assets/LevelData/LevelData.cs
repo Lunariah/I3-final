@@ -10,6 +10,8 @@ public class LevelData : ScriptableObject
     
     [Tooltip("Leave blank to reuse the current scene")]
     public string scene = "";
+    [Range(0,100)]
+    public int Speed;
     public EnemyPool Objective;
     public EnemyPool Spawns;
     public bool infinite;
