@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    public SpawnWeights weights;
     public GameObject Straight;
     public GameObject Zigzag;
     public GameObject Sinus;
@@ -15,6 +16,10 @@ public class SpawnManager : MonoBehaviour
 
     private void Awake()
     {
+        if (transform.childCount == 0) {
+            Debug.LogError("Spawn Manager has no child to use as spawn points");
+            return;
+        }
         spawners = new List<Transform>();
         for(int i = 0; i < transform.childCount; i++)
         {
@@ -63,11 +68,21 @@ public class SpawnManager : MonoBehaviour
                 break;
         };
         
-        if (newEnemy == null)
+        if (newEnemy == null) {
             Debug.LogError("Enemy type unknown to SpawnManager");
-        else
-        {
+        }
+        else {
             Instantiate(newEnemy, spawners[Random.Range(0, spawners.Count)].position, Quaternion.identity);
         }
+    }
+
+    public void Spawn()
+    {
+        if (weights == null) {
+            Debug.LogError("No Spawn Weights object assigned to Spawn Manager");
+            return;
+        }
+
+        Spawn(weights.randomSelect());
     }
 }

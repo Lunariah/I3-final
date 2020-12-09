@@ -42,7 +42,7 @@ public class Bullet : MonoBehaviour
             Detonate(bigFlare);
             Debug.Log("Invader destroyed");
 
-            level.EnemyDestroyed(Identify(other.gameObject));
+            //level.EnemyDestroyed(Identify(other.gameObject));
         }
     }
 
