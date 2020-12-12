@@ -14,8 +14,17 @@ public class GameManager : MonoBehaviour
         get { return levels[levelIndex]; }
     }
     
-    public void GoToNextLevel()
+    public IEnumerator GoToNextLevel(float delay)
     {
+        Debug.Log("Coroutine started");
+        if (delay > 0) {
+            delay -= Time.deltaTime;
+            yield return null;
+        }
+
+        Debug.Log("Going to next level");
+
+        /*
         levelIndex++;
         if (levelIndex >= levels.Length)
         {
@@ -29,6 +38,8 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+        */
+        SceneManager.LoadScene(1);
     }
 
     private void Awake()
