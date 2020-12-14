@@ -5,26 +5,31 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     public SpawnWeights weights;
-    public GameObject Straight;
-    public GameObject Zigzag;
-    public GameObject Sinus;
-    public GameObject StaticGenerator;
-    public GameObject HorizontalGenerator;
-    public GameObject StraightBomber;
+    private GameObject Straight;
+    private GameObject Zigzag;
+    private GameObject Sinus;
+    private GameObject StaticGenerator;
+    private GameObject HorizontalGenerator;
+    private GameObject StraightBomber;
 
     private List<Transform> spawners;
 
-    private void Awake()
+    private void Start()
     {
-        if (transform.childCount == 0) {
-            Debug.LogError("Spawn Manager has no child to use as spawn points");
-            return;
-        }
         spawners = new List<Transform>();
-        for(int i = 0; i < transform.childCount; i++)
+
+        if (transform.childCount == 0) {
+            Debug.Log("SpawnManager has no children to use as spawn points. Using own position instead.");
+            spawners.Add(transform);
+        }
+        else for(int i = 0; i < transform.childCount; i++)
         {
             spawners.Add(transform.GetChild(i));
         }
+
+        Straight = Resources.Load<GameObject>("Enemy type 1 (Straight)");
+        Zigzag = Resources.Load<GameObject>("Enemy type 2 (Zigzag)");
+        Sinus = Resources.Load<GameObject>("Enemy type 3 (Sin)");
     }
     public void Spawn(EnemyType enemyToSpawn)
     {

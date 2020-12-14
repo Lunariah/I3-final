@@ -9,7 +9,7 @@ public class HitZone : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             Destroy(collision.gameObject);
-            Debug.Log("Damage taken");
+            //Debug.Log("Damage taken");
         }
     }
 }

@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
     {
         Destroy(gameObject);
         Instantiate(flareType, body.position, Quaternion.identity);
-        Debug.Log("Detonated");
+        //Debug.Log("Detonated");
     }
 
     void FixedUpdate()
@@ -29,7 +29,7 @@ public class Bullet : MonoBehaviour
         if (body.velocity.y <= detonateAtVelocity)
         {
             Detonate(smallFlare);
-            Debug.Log("Whiffed");
+            //Debug.Log("Whiffed");
         }
     }
 
@@ -40,7 +40,7 @@ public class Bullet : MonoBehaviour
         {
             Destroy(other.gameObject);
             Detonate(bigFlare);
-            Debug.Log("Invader destroyed");
+            //Debug.Log("Invader destroyed");
 
             //level.EnemyDestroyed(Identify(other.gameObject));
         }
@@ -65,6 +65,6 @@ public class Bullet : MonoBehaviour
 
     private void OnDestroy()
     {
-        Debug.Log("Destroyed");
+        //Debug.Log("Destroyed");
     }
 }

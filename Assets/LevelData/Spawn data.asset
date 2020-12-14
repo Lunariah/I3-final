@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53ffff65c5274254fb9ac5c75de6c119, type: 3}
   m_Name: Spawn data
   m_EditorClassIdentifier: 
-  straight: 4.83
-  zigzag: 0
+  straight: 10
+  zigzag: 10
   sinus: 10
   staticGenerator: 0
   horizontalGenerator: 0

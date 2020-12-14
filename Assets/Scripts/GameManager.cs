@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     [HideInInspector] public static GameManager instance = null;
 
+    public bool endless;
+
     [SerializeField] private LevelData[] levels;
     private int levelIndex = 0;
     public LevelData CurrentLevel
@@ -14,32 +16,37 @@ public class GameManager : MonoBehaviour
         get { return levels[levelIndex]; }
     }
     
+    public void StartArcadeMode()
+    {
+        endless = false;
+        SceneManager.LoadScene("Init");
+        // Game Mode Dispatcher will load the first arcade scene according to this.endless
+    }
+
+    public void StartEndlessMode()
+    {
+        endless = true;
+        SceneManager.LoadScene("Init");
+        // Game Mode Dispatcher will load the endless scene according to this.endless
+    }
     public IEnumerator GoToNextLevel(float delay)
     {
-        Debug.Log("Coroutine started");
-        if (delay > 0) {
+        int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
+
+        while (delay > 0) {
             delay -= Time.deltaTime;
             yield return null;
         }
+        if (SceneUtility.GetScenePathByBuildIndex(nextScene).Contains("ictory")) 
+            Destroy(GameObject.Find("Game Core"));
+        
+        SceneManager.LoadScene(nextScene);
+    }
 
-        Debug.Log("Going to next level");
-
-        /*
-        levelIndex++;
-        if (levelIndex >= levels.Length)
-        {
-            // End game
-        }
-        else if (levels[levelIndex].scene != null) 
-        { 
-            SceneManager.LoadScene(levels[levelIndex].scene); 
-        }
-        else
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-        */
-        SceneManager.LoadScene(1);
+    public void GameOver()
+    {
+        Destroy(GameObject.Find("Game Core"));
+        SceneManager.LoadScene("Game Over");
     }
 
     private void Awake()

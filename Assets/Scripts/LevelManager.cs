@@ -1,30 +1,29 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-using System;
 
 public class LevelManager : MonoBehaviour
 {
 //    public LevelData levelData;
 //    private EnemyPool score;
     public float timer = 5f;
-    [Range(1,5)] public float levelSpeed = 2;
+    [Range(1,5)] [Tooltip("Seconds between each spawn")] public float spawnDelay = 2;
 
-    public Animator lightAnim;
-
-    private float secondsUntilNextSpawn = 0;
-    private GameManager game;
-    private bool timeTicking = true;
-    private float timerOnLastUpdate;
-    private int minutes, seconds;
-    private TextMeshProUGUI timerUI;
-    private SpawnManager spawner;
-
+    [Tooltip("Defaults to Light")] protected Animator lightAnim;
+    protected GameManager game;
+    protected SpawnManager spawner;
+    protected TextMeshProUGUI timerUI;
+    protected float secondsUntilNextSpawn = 0;
+    protected bool timeTicking = true;
+    protected float timerOnLastUpdate;
+    protected int minutes, seconds;
 
 
-    private void Awake()
+
+    protected virtual void Start()
     {
         game = GameManager.instance;
         if (game == null) { Debug.LogError("Game won’t let us talk to the manager"); enabled = false;  return; } ;
@@ -38,66 +37,33 @@ public class LevelManager : MonoBehaviour
         score = new EnemyPool();
 */
         timerUI = GameObject.Find("Timer").GetComponent<TextMeshProUGUI>();
-        if (timerUI == null) { Debug.LogError("No Timer object found"); }
+        if (timerUI == null) { Debug.LogError("Can’t find ’Timer’ object with TextMeshProUGUI"); }
+
+        lightAnim = GameObject.Find("Light").GetComponent<Animator>();
+        if (lightAnim == null) { Debug.LogError("Can’t find ’Light’ object with animator");}
 
         timerOnLastUpdate = timer + 61;
     }
 
-    private void Update()
+    protected void TriggerSpawners()
     {
-        if (timeTicking) 
+        if (spawner != null)
         {
-            updateTimer();
-
-            // Spawn enemies
-            if (spawner != null)
+            secondsUntilNextSpawn -= Time.deltaTime;
+            if (secondsUntilNextSpawn <= 0)
             {
-                secondsUntilNextSpawn -= Time.deltaTime;
-                if (secondsUntilNextSpawn <= 0)
-                {
-                    spawner.Spawn();
-                    secondsUntilNextSpawn = levelSpeed;
-                }
-            }
-        }
-        else
-        {
-            if (GameObject.FindGameObjectWithTag("Enemy") == null)
-            {
-                lightAnim.SetTrigger("Level cleared");
-                Debug.Log("Starting coroutine");
-                StartCoroutine(game.GoToNextLevel(3));
-
-                this.enabled = false;
+                spawner.Spawn();
+                secondsUntilNextSpawn = spawnDelay;
             }
         }
     }
 
-    private void updateTimer() // Update the timer if necessary
+    protected virtual void Update()
     {
-        // if (!timeTicking) 
-        //     return;
-
-        timer -= Time.deltaTime;
         
-        if (timerOnLastUpdate >= timer + 1)  // If it’s been at least a second since the last time the timer was updated
-        {
-            //Debug.Log("second");
-            timerOnLastUpdate = timer;
-            if (timer > 0) {
-                minutes = (int)(timer / 60);
-                seconds = (int)(timer % 60);
-                timerUI.SetText(String.Format("{0:00}:{1:00}", minutes, seconds));
-            }
-            
-            else { 
-                timer = 0;
-                timerUI.SetText("0:00");
-                lightAnim.SetTrigger("Time up");
-                timeTicking = false;
-            }
-        }
     }
+
+    
     /*
     public void EnemyDestroyed(EnemyType destroyed)
     {
