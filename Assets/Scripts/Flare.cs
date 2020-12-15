@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
+// This definitely could have been an animation
 
 [RequireComponent(typeof(Light2D))]
 public class Flare : MonoBehaviour

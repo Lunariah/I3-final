@@ -29,6 +29,22 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Init");
         // Game Mode Dispatcher will load the endless scene according to this.endless
     }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("Menu");
+        Destroy(gameObject); // The Menu scene’s new GameManager has to be used so the button events don’t lose their reference
+    }
+
+    public void ExitGame()
+    {
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
+    }
+
     public IEnumerator GoToNextLevel(float delay)
     {
         int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
@@ -37,6 +53,7 @@ public class GameManager : MonoBehaviour
             delay -= Time.deltaTime;
             yield return null;
         }
+
         if (SceneUtility.GetScenePathByBuildIndex(nextScene).Contains("ictory")) 
             Destroy(GameObject.Find("Game Core"));
         

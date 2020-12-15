@@ -7,9 +7,6 @@ using TMPro;
 
 public class LevelManager : MonoBehaviour
 {
-//    public LevelData levelData;
-//    private EnemyPool score;
-
     public String levelName = "";
     public float timer = 5f;
     [Range(1,5)] [Tooltip("Seconds between each spawn")] public float spawnDelay = 2;
@@ -32,12 +29,7 @@ public class LevelManager : MonoBehaviour
 
         spawner = GameObject.FindObjectOfType<SpawnManager>();
         if (spawner == null) { Debug.LogError("Can’t find Spawn Manager");}
-/*
-        levelData = game.CurrentLevel;
-        if (levelData == null) { Debug.LogError("Can’t find level data in Game Manager"); enabled = false; return; }
 
-        score = new EnemyPool();
-*/
         timerUI = GameObject.Find("Timer").GetComponent<TextMeshProUGUI>();
         if (timerUI == null) { Debug.LogError("Can’t find ’Timer’ object with TextMeshProUGUI"); }
 
