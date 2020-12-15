@@ -9,12 +9,12 @@ public class GameManager : MonoBehaviour
 
     public bool endless;
 
-    [SerializeField] private LevelData[] levels;
+    //[SerializeField] private LevelData[] levels;
     private int levelIndex = 0;
-    public LevelData CurrentLevel
+    /*public LevelData CurrentLevel
     {
         get { return levels[levelIndex]; }
-    }
+    }*/
     
     public void StartArcadeMode()
     {

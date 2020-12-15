@@ -8,6 +8,7 @@ public class ArcadeManager : LevelManager
     override protected void Start()
     {
         base.Start();
+        lightAnim.SetTrigger("Level cleared");
     }
     
     override protected void Update()
@@ -25,8 +26,7 @@ public class ArcadeManager : LevelManager
         {
             if (GameObject.FindGameObjectWithTag("Enemy") == null)
             {
-                lightAnim.SetTrigger("Level cleared");
-                Debug.Log("Starting coroutine");
+
                 StartCoroutine(game.GoToNextLevel(2));
 
                 this.enabled = false;
@@ -43,7 +43,6 @@ public class ArcadeManager : LevelManager
         
         if (timerOnLastUpdate >= timer + 1)  // If it’s been at least a second since the last time the timer was updated
         {
-            //Debug.Log("second");
             timerOnLastUpdate = timer;
             if (timer > 0) {
                 minutes = (int)(timer / 60);
@@ -53,7 +52,7 @@ public class ArcadeManager : LevelManager
             
             else { 
                 timer = 0;
-                timerUI.SetText("0:00");
+                timerUI.SetText("00:00");
                 lightAnim.SetTrigger("Time up");
                 timeTicking = false;
             }

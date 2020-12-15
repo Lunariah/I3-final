@@ -29,7 +29,7 @@ public class PlayerControl : MonoBehaviour
         if (launchPoint == null) { launchPoint = transform; }
     }
 
-    private void Update() // FixedUpdate?
+    private void Update()
     {
         // Movement
         if (Input.GetAxis("Horizontal") > 0 && transform.position.x < rightBound || Input.GetAxis("Horizontal") < 0 && transform.position.x > leftBound)

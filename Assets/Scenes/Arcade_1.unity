@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelName: Level 1
-  timer: 1
-  spawnDelay: 2
+  timer: 10
+  spawnDelay: 1
 --- !u!4 &901754598
 Transform:
   m_ObjectHideFlags: 0
