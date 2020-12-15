@@ -9,6 +9,8 @@ public class LevelManager : MonoBehaviour
 {
 //    public LevelData levelData;
 //    private EnemyPool score;
+
+    public String levelName = "";
     public float timer = 5f;
     [Range(1,5)] [Tooltip("Seconds between each spawn")] public float spawnDelay = 2;
 

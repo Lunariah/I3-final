@@ -221,6 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db97986f5a72dd6409fe95879553d0fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelName: Level 3
   timer: 1
   spawnDelay: 2
 --- !u!4 &1873927988
