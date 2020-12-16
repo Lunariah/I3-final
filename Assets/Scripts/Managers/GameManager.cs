@@ -8,13 +8,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public static GameManager instance = null;
 
     public bool endless;
+    public int score = 0;
 
-    //[SerializeField] private LevelData[] levels;
-    private int levelIndex = 0;
-    /*public LevelData CurrentLevel
-    {
-        get { return levels[levelIndex]; }
-    }*/
     
     public void StartArcadeMode()
     {

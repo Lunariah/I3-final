@@ -16,7 +16,6 @@ public class LevelManager : MonoBehaviour
     protected SpawnManager spawner;
     protected TextMeshProUGUI timerUI;
     protected float secondsUntilNextSpawn = 0;
-    protected bool timeTicking = true;
     protected float timerOnLastUpdate;
     protected int minutes, seconds;
 
@@ -41,7 +40,7 @@ public class LevelManager : MonoBehaviour
         timerOnLastUpdate = timer + 61;
     }
 
-    protected void TriggerSpawners()
+    protected void spawnersUpdate()
     {
         if (spawner != null)
         {
@@ -51,6 +50,24 @@ public class LevelManager : MonoBehaviour
                 spawner.Spawn();
                 secondsUntilNextSpawn = spawnDelay;
             }
+        }
+    }
+
+    public virtual void EnemyDestroyed(EnemyType enemy)
+    {
+        switch (enemy)
+        {
+            case EnemyType.Straight:
+                game.score += 5;
+                break;
+            case EnemyType.Zigzag:
+                game.score += 6;
+                break;
+            case EnemyType.Sinus:
+                game.score += 7;
+                break;
+            default:
+                break;
         }
     }
 

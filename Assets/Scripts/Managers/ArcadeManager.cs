@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ArcadeManager : LevelManager
 {
+    private bool timeTicking = true;
+
     override protected void Start()
     {
         base.Start();
@@ -20,7 +22,7 @@ public class ArcadeManager : LevelManager
             updateTimer();
 
             // Spawn enemies
-            TriggerSpawners();
+            spawnersUpdate();
         }
         else
         {
