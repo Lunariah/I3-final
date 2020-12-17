@@ -46,6 +46,8 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Level restart");
 
         timerOnLastUpdate = timer + 61;
+
+        GameObject.Find("Level name").GetComponent<TextMeshProUGUI>().text = levelName;
     }
 
     protected void spawnersUpdate()
