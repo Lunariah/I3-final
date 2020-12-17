@@ -43,6 +43,7 @@ public class LevelManager : MonoBehaviour
         if (lightAnim == null) { Debug.LogError("Can’t find ’Light’ object with animator");}
 
         lightAnim.SetTrigger("Level restart");
+        Debug.Log("Level restart");
 
         timerOnLastUpdate = timer + 61;
     }

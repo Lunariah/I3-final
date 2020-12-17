@@ -10,7 +10,7 @@ public class ArcadeManager : LevelManager
     override protected void Start()
     {
         base.Start();
-        lightAnim.SetTrigger("Level cleared");
+        updateTimer(); // Check if this does anything
     }
     
     override protected void Update()
@@ -29,8 +29,9 @@ public class ArcadeManager : LevelManager
             if (GameObject.FindGameObjectWithTag("Enemy") == null)
             {
 
-                StartCoroutine(game.GoToNextLevel(2));
-
+                StartCoroutine(game.GoToNextLevel(3));
+                lightAnim.SetTrigger("Level cleared");
+                Debug.Log("Level cleared");
                 this.enabled = false;
             }
         }
@@ -56,6 +57,7 @@ public class ArcadeManager : LevelManager
                 timer = 0;
                 timerUI.SetText("00:00");
                 lightAnim.SetTrigger("Time up");
+                Debug.Log("Time up");
                 timeTicking = false;
             }
         }

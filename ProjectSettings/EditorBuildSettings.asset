@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Arcade_2.unity
     guid: ea7908dd10888804ab89a7f370cbb0e8
   - enabled: 1
-    path: Assets/Scenes/Arcade_3.unity
+    path: Assets/Scenes/Arcade_4.unity
     guid: 8c8ba2b848a491541a55c1c5d6e5d304
   - enabled: 1
     path: Assets/Scenes/Victory.unity
