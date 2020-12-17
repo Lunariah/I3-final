@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EndlessManager : LevelManager
 {
-
-
     override protected void Start()
     {
         base.Start();

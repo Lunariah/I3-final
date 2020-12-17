@@ -9,7 +9,6 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private Transform launchPoint;
     [SerializeField] private Transform chargeJauge;
     [SerializeField] private GameObject bullet;
-    [SerializeField] private LevelManager level;
 
     [Header("Tweaks")]
     [SerializeField] private float movementSpeed = 3;
@@ -25,7 +24,6 @@ public class PlayerControl : MonoBehaviour
 
     private void Start()
     {
-        if (level == null) { level = FindObjectOfType<LevelManager>(); }
         if (launchPoint == null) { launchPoint = transform; }
     }
 
@@ -49,7 +47,6 @@ public class PlayerControl : MonoBehaviour
                 // Fire
                 GameObject new_bullet = Instantiate(bullet, launchPoint.position, Quaternion.identity);
                 new_bullet.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, charge * power), ForceMode2D.Impulse);
-                new_bullet.GetComponent<Bullet>().level = level;
             }
             charge = 0;
         }

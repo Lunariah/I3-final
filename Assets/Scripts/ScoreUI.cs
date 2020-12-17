@@ -8,12 +8,6 @@ public class ScoreUI : MonoBehaviour
 {
     void Start()
     {
-        GameManager game = GameObject.FindObjectOfType<GameManager>();
-        if (game == null) {
-            Debug.LogError("Can’t find Game Manager");
-        }
-        else {
-            GetComponent<TextMeshProUGUI>().text = "" + game.score;
-        }
+        GetComponent<TextMeshProUGUI>().text = "" + GameManager.instance.score;
     }
 }
